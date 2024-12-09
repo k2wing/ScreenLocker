@@ -1,0 +1,52 @@
+#loading-placeholder {
+    background-color: rgb(44, 55, 68);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+#loading-placeholder.fade-out {
+    animation: fade-out 0.4s ease-in-out;
+}
+@keyframes fade-out {
+    0% { opacity: 1}
+    100% { opacity: 0}
+}
+#loading-bar {
+    position: relative;
+}
+#loading-bar,
+#loading-bar > :first-child,
+#loading-bar > :last-child {
+    width: 800px;
+    height: 30px;
+}
+#loading-bar > :first-child,
+#loading-bar > :last-child {
+    position: absolute;
+	top: 0;
+	left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+    font-weight: bold;
+    border-radius: 50px;
+}
+#loading-bar > :first-child {
+    background-image: linear-gradient(90deg, rgb(196, 196, 196) 0%, rgb(100, 100, 100) 100%);
+    color: rgb(240, 240, 240);
+}
+#loading-bar > :last-child {
+    /*background-color: rgb(0, 204, 255);*/
+    background-image: linear-gradient(90deg, rgb(0, 140, 255), rgb(2, 255, 242), rgb(0, 140, 255));
+    background-size: 200% 100%;
+    color: rgb(255, 239, 9);
+    clip: rect(auto auto auto auto);
+    animation: repetition 1s infinite linear;
+}
+@keyframes repetition {
+    0% {background-position: 200% 0%;}
+    100% {background-position: 0% 0%;}
+}

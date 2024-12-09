@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ScreenLocker Demo1</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="demo1.css">
+  <script src="log.js"></script>
+  <script src="screenlocker.js"></script>
+  <script>
+    // remove "display:none" from body.
+      new ScreenLocker().restoreBody();
+  </script>
+</head>
+<body>
+  <header></header>
+  <main>
+    <form name="main">
+      <div>
+        <input type="text" value="sample">
+      </div>
+      <div>
+        <label><input type="radio" name="radio">sample</label>
+        <label><input type="radio" name="radio">sample</label>
+      </div>
+      <div>
+        <select><option>sample</option><option>sample</option></select>
+      </div>
+      <div>
+        <textarea>sample sample sample sample sample sample</textarea>
+      </div>
+      <input name="lockButton" type="button" value="Screen Lock">
+  </form>
+</main>
+  <footer></footer>
+  <script>
+    const form = document.forms.main;
+    const div = document.createElement("div");
+    
+    const input = document.createElement("input");
+    input.type = "button";
+    input.value = "Screen Unlock";
+    input.onclick = ()=>{
+      new ScreenLocker().unlock("opacity");
+    };
+    
+    const p = document.createElement("p");
+    p.textContent = "Mouse input and key input suppressed...";
+    p.style = "position: absolute; right: 0px; bottom: 0px;";
+
+    div.appendChild(input);
+    div.appendChild(p);
+    
+    form.lockButton.onclick = ()=>{
+        new ScreenLocker().lock("overlay", div, "show");  
+    };
+  </script>
+</body>
+</html>

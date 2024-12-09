@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ScreenLocker Demo2</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="demo2.css">
+  <script src="log.js"></script>
+  <!--Load here to avoid flickering.-->
+  <script src="screenlocker.js"></script>
+</head>
+<body>
+  <header>ScreenLocker Loading Sample</header>
+  <main>
+  </main>
+  <footer></footer>
+</body>
+<script>
+
+  const bar = document.createElement("div");
+  const base = document.createElement("div");
+  const current = document.createElement("div");
+
+  // remove "display:none" from body to lock the screen.
+  new ScreenLocker().restoreBody().lock("loading-placeholder", bar);
+
+  bar.id = "loading-bar";
+  bar.appendChild(base);
+  bar.appendChild(current);    
+  
+  const startTime = new Date().getTime();
+  const completionTime = 3000;
+  
+  const tid = setInterval(()=>{
+
+    const elapsedTime = new Date().getTime( ) - startTime;
+    const completionRate = elapsedTime / completionTime;
+
+    base.textContent = current.textContent = `${Math.floor(completionRate*100)}%`;
+    current.style.clip = `rect(auto ${Math.floor(current.offsetWidth*completionRate)}px auto auto)`;
+
+    if(elapsedTime > completionTime) {
+
+      clearInterval(tid);
+      // Unlocks the screen and starts a "fade-out" class animation.
+      new ScreenLocker().unlock("animation", "fade-out");
+    }
+  }, 1);
+</script>
+</html>
