@@ -16,10 +16,12 @@
 #loading-bar {
     position: relative;
 }
-#loading-bar,
+#loading-bar {
+    width: 75%
+}
 #loading-bar > :first-child,
 #loading-bar > :last-child {
-    width: 800px;
+    width: 100%;
     height: 30px;
 }
 #loading-bar > :first-child,
