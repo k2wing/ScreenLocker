@@ -22,7 +22,7 @@ headタグに以下のようにしてスクリプトの読み込みを記述し�
 ...
 ```
 任意のタイミングでスクリーンをロックする場合はスクリプトを読み込んだ直後に`restoreBody()`メソッドを使用してページの表示を元の状態に復元します。<br>
-ローディングとして使用する場合はロックをする直前で`restore()`を使用します。<br>
+ローディングとして使用する場合はロックをする直前で`restoreBody()`を使用します。<br>
 ※`restoreBody()`はスクリプト読み込み時に設定されたbody要素のスタイル`display: none`を削除しているためこのメソッドを使用するまでページは表示されません。
 ```javascript
 new ScreenLocker().restoreBody();
@@ -41,7 +41,8 @@ childElement.textContent = "screen lock";
 new ScrennLocker().lock("overlay", childElement);
 
 // 第3引数はデフォルト要素のclassを指定(可変長引数)できます。
-// 追加したclassはunlockでclassを指定しなかった場合に自動で削除されます。これによりトランジッションがスムーズに行えます。
+// 追加したclassはunlockでclassを指定しなかった場合に自動で削除されます。
+// これによりトランジッションがスムーズに行えます。
 new ScreenLocker().lock("overlay", null, "show");
 ```
 スクリーンのロックを解除したいタイミングで`unlock()`を使用します。<br>
@@ -52,7 +53,8 @@ new ScreenLocker().unlock();
 // 第1引数にはアニメーションやトランジッションを正常に終了するために使用します。
 // アニメーションの場合は"animation"を指定。
 new ScreenLocker().unlock("animation");
-// トランジッションの場合はトランジッションに使用した終了判定となるCSSプロパティ名を指定します。複数は指定できません。
+// トランジッションの場合はトランジッションに使用した終了判定となるCSSプロパティ名を指定します。
+// プロパティを複数指定する事はできません。
 new ScreenLocker().unlock("opacity");
 
 // 第2引数はデフォルト要素のclassを指定(可変長引数)できます。
